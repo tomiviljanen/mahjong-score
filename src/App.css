@@ -3,22 +3,28 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #0e6023;
   min-height: 100vh;
+  min-height: -webkit-fill-available;
   font-size: calc(10px + 2vmin);
   color: white;
 }
 
-
 .rack{
-  position: fixed;
-  left: 0px;
-  bottom: 0px;
   width: 100vw;
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
-  gap: 1em;
+  row-gap: 1em;
+  margin-top: 1em;
+}
+
+.tile-rack{
+  column-gap: 1em;
+}
+
+.honor-rack{
+  column-gap: 1.8em;
 }
 
 
@@ -32,6 +38,7 @@
 .point-rack{
   width: 100vw;
   display: flex;
+  margin-top: 0.5em;
   flex-direction: row;
   flex-flow: space-between;
   align-items: left;
@@ -39,13 +46,23 @@
 }
 
 .point-tile{
-  width: 3em;
+  width: 2.5em;
+  height: 3.0em;
   border: 1px solid black;
 }
 
-.wind{
- width: 40vw;
 
+.point-fg{
+  width: 1.5em;
+  background-color: #f5f0eb;
+  border-radius: 15%;
+  padding: 0.3em;
+}
+
+.winds{
+ width: 100vw;
+ display: flex;
+ justify-content: space-evenly;
 }
 
 .wind-img{
@@ -53,4 +70,26 @@
   background-color: #f5f0eb;
   border-radius: 15%;
   padding: 0.3em;
+}
+
+.tile-chooser, .naki-chooser{
+  width: 100vw;
+  margin-top: 1em;
+  display: flex;
+  background-color: transparent;
+  justify-content: space-evenly;
+}
+
+.tile-option, .naki-option{
+  flex-grow: 1;
+  padding: 1em;
+  border-radius: 0%;
+  margin: 0px;
+  background-color: #f5f0eb;
+  color: black;
+  border: 0px;
+}
+
+#active{
+  background-color: orange !important;
 }
