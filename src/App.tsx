@@ -1,5 +1,4 @@
 import React, {useState } from "react";
-import { isArrayLiteralExpression } from "typescript";
 import './App.css';
 import { HonorTiles, Tiles } from './Tile';
 
@@ -13,7 +12,6 @@ function App() {
   const [showHonors, setShowHonors] = useState(false);
   const [chosenTiles, setChosenTiles] = useState<Array<{type: string, num: string}>>([]);
   const [naki, setNaki] = useState("NONE");
-  const [isActive, setIsActive] = useState(false);
 
   function clickSeatWind(){
       if(seat === "EAST"){
@@ -48,7 +46,7 @@ function App() {
   }
 
 function clickTileOption(tile: string){
-  if(tile != "Hon"){
+  if(tile !== "Hon"){
     setShowHonors(false);
     setTiles(tile);
   }else{
@@ -68,7 +66,7 @@ function addTile(type: string, num: string){
           setChosenTiles([...chosenTiles, {type, num}, {type, num}, {type, num}]);
         }
       }else if(naki === "KAN"){
-        if(chosenTiles.filter(item => item.type === type && item.num === num).length == 0){
+        if(chosenTiles.filter(item => item.type === type && item.num === num).length === 0){
           setChosenTiles([...chosenTiles, {type, num}, {type, num}, {type, num}, {type, num}]);
         }
       }else{
@@ -93,7 +91,7 @@ function addTile(type: string, num: string){
 
       <div className="new-points">
         {Array.from({length: chosenTiles.length}).map((_, x) => (
-            <img className="point-fg" src={"images/" + chosenTiles[x].type + chosenTiles[x].num + ".svg"}/>
+            <img className="point-fg" alt="chosen-tile" src={"images/" + chosenTiles[x].type + chosenTiles[x].num + ".svg"}/>
         ))}
 
       </div>
