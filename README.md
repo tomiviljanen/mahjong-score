@@ -1,3 +1,6 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/f2d196a2-2bac-4682-adf5-41430357e9ff/deploy-status)](https://app.netlify.com/sites/furiten/deploys)
+
+[Demo](https://furiten.netlify.app/)
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
