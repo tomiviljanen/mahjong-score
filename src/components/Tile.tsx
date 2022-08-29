@@ -1,4 +1,4 @@
-import { IMAGE_FOLDER } from "../Constants";
+import { IMAGE_FOLDER } from "../util/Constants";
 
 type TileProps = {
   tile: string,
@@ -18,24 +18,32 @@ export const Tiles = ({ tile, handleOnClick }: TileProps) => {
   return <div className='rack tile-rack'>
     {
       Array.from({ length: 9 }).map((_, count) => (
-        <input onClick={e => handleClick(tile, (count + 1).toString())} alt="tile" className="tile-fg" type="image" src={IMAGE_FOLDER + tile + (count + 1) + ".svg"} />
+        <input onClick={e => handleClick(tile, (count + 1).toString())} alt="tile" className="tile-fg" type="image" src={IMAGE_FOLDER + tile + "/" +  (count + 1) + ".svg"} />
       ))
     }
-    <input alt="tile" className="tile-fg" type="image" src={IMAGE_FOLDER + tile + (5) + "-Dora.svg"} />
+    <input alt="tile" className="tile-fg" type="image" src={IMAGE_FOLDER + "/" + tile + "/5-Dora.svg"} />
   </div>
 
 
 }
 
-export const HonorTiles = () => {
+type HonorProps = {
+  handleOnClick: (value: TileType) => void
+}
+
+export const HonorTiles = ({handleOnClick}: HonorProps) => {
+  const handleClick = (num: string) => {
+    const tile = "Hon"
+    handleOnClick({ tile, num });
+  };
 
   return <div className="rack honor-rack">
-    <input alt="tile" className="tile-fg" type="image" src="images/Ton.svg" />
-    <input alt="tile" className="tile-fg" type="image" src="images/Nan.svg" />
-    <input alt="tile" className="tile-fg" type="image" src="images/Shaa.svg" />
-    <input alt="tile" className="tile-fg" type="image" src="images/Pei.svg" />
-    <input alt="tile" className="tile-fg" type="image" src="images/Chun.svg" />
-    <input alt="tile" className="tile-fg" type="image" src="images/Hatsu.svg" />
-    <input alt="tile" className="tile-fg" type="image" src="images/Haku.svg" />
+    <input onClick={e => handleClick("Ton")} alt="tile" className="tile-fg" type="image" src="images/Hon/Ton.svg" />
+    <input onClick={e => handleClick("Nan")} alt="tile" className="tile-fg" type="image" src="images/Hon/Nan.svg" />
+    <input onClick={e => handleClick("Shaa")} alt="tile" className="tile-fg" type="image" src="images/Hon/Shaa.svg" />
+    <input onClick={e => handleClick("Pei")} alt="tile" className="tile-fg" type="image" src="images/Hon/Pei.svg" />
+    <input onClick={e => handleClick("Chun")} alt="tile" className="tile-fg" type="image" src="images/Hon/Chun.svg" />
+    <input onClick={e => handleClick("Hatsu")} alt="tile" className="tile-fg" type="image" src="images/Hon/Hatsu.svg" />
+    <input onClick={e => handleClick("Haku")} alt="tile" className="tile-fg" type="image" src="images/Hon/Haku.svg" />
   </div>
 }

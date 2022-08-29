@@ -1,4 +1,4 @@
-import { OptionButton } from './OptionButton';
+import { OptionButton } from './styled/OptionButton';
 
 type NakiProps = {
     type: string,

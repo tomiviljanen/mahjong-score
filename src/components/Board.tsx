@@ -1,10 +1,12 @@
 import { useState } from "react";
 import styled from "styled-components";
-import { HAND_LENGTH, IMAGE_FOLDER } from "../Constants";
+import { HAND_LENGTH, IMAGE_FOLDER } from "../util/Constants";
+import { isObjectEqual } from "../util/Util";
 import { Naki } from "./Naki";
-import { OptionButton } from "./OptionButton";
-import { OptionRack } from "./OptionRack";
+import { OptionButton } from "./styled/OptionButton";
+import { OptionRack } from "./styled/OptionRack";
 import { HonorTiles, Tiles, TileType } from "./Tile";
+import { WindTile } from "./WindTile";
 
 const StyledBoard = styled.div`
     background-color: #0e6023;
@@ -15,8 +17,6 @@ const StyledBoard = styled.div`
 `
 
 export const Board = () => {
-
-
     const WINDS = ["Ton", "Nan", "Shaa", "Pei"];
     const [seat, setSeat] = useState(0);
     const [round, setRound] = useState(0);
@@ -25,8 +25,8 @@ export const Board = () => {
     const [chosenTiles, setChosenTiles] = useState<Array<TileType>>([]);
     const [naki, setNaki] = useState("NONE");
 
-    const clickSeatWind = () => seat === 3 ? setSeat(0) : setSeat(seat+1);
-    const clickRoundWind = () => round === 3 ? setRound(0) : setRound(round+1);
+    const clickSeatWind = () => seat === 3 ? setSeat(0) : setSeat(seat + 1);
+    const clickRoundWind = () => round === 3 ? setRound(0) : setRound(round + 1);
     const clickNaki = (value: string) => value === naki ? setNaki("NONE") : setNaki(value);
 
     const clickTileOption = (tile: string) => {
@@ -39,10 +39,8 @@ export const Board = () => {
     }
 
     const addTile = (tile: TileType) => {
-        console.log(tile);
-        console.log(chosenTiles);
         if (chosenTiles.length < HAND_LENGTH &&
-            chosenTiles.filter(t => t === tile).length <= 3) {
+            chosenTiles.filter(t => isObjectEqual(t, tile)).length <= 3) {
             switch (naki) {
                 case "Pon":
                     addPon(tile);
@@ -57,13 +55,13 @@ export const Board = () => {
     }
 
     const addPon = (tile: TileType) => {
-        if (chosenTiles.filter(t => t === tile).length < 1) {
+        if (chosenTiles.filter(t => isObjectEqual(t, tile)).length < 1) {
             setChosenTiles([...chosenTiles, tile, tile, tile]);
         }
     }
 
     const addKan = (tile: TileType) => {
-        if (chosenTiles.filter(t => t === tile).length === 0) {
+        if (chosenTiles.filter(t => isObjectEqual(t, tile)).length === 0) {
             setChosenTiles([...chosenTiles, tile, tile, tile, tile]);
         }
     }
@@ -73,17 +71,17 @@ export const Board = () => {
             <div className="winds">
                 <div className='wind'>
                     Seat wind<br />
-                    <input onClick={clickSeatWind} alt="seat-wind" className="wind-img" type="image" src={IMAGE_FOLDER + WINDS[seat] + ".svg"}></input>
+                    <WindTile onClick={clickSeatWind} wind={WINDS[seat]} />
                 </div>
                 <div className='wind'>
                     Round wind<br />
-                    <input onClick={clickRoundWind} alt="round-wind" className="wind-img" type="image" src={IMAGE_FOLDER + WINDS[round] + ".svg"}></input>
+                    <WindTile onClick={clickRoundWind} wind={WINDS[round]} />
                 </div>
             </div>
 
             <div className="new-points">
                 {Array.from({ length: chosenTiles.length }).map((_, x) => (
-                    <img className="point-fg" alt="chosen-tile" src={IMAGE_FOLDER + chosenTiles[x].tile + chosenTiles[x].num + ".svg"} />
+                    <img className="point-fg" alt="chosen-tile" src={IMAGE_FOLDER + "/" + chosenTiles[x].tile + "/" + chosenTiles[x].num + ".svg"} />
                 ))}
             </div>
 
@@ -95,13 +93,13 @@ export const Board = () => {
             </OptionRack>
 
             <OptionRack>
-                <OptionButton onClick={e => clickTileOption("Man")} >Manzu</OptionButton>
-                <OptionButton onClick={e => clickTileOption("Pin")} >Pinzu</OptionButton>
-                <OptionButton onClick={e => clickTileOption("Sou")} >Souzu</OptionButton>
-                <OptionButton onClick={e => clickTileOption("Hon")} >Honor</OptionButton>
+                <OptionButton id={!showHonors && tiles === "Man" ? "active" : "inactive"} onClick={e => clickTileOption("Man")} >Manzu</OptionButton>
+                <OptionButton id={!showHonors && tiles === "Pin" ? "active" : "inactive"} onClick={e => clickTileOption("Pin")} >Pinzu</OptionButton>
+                <OptionButton id={!showHonors && tiles === "Sou" ? "active" : "inactive"} onClick={e => clickTileOption("Sou")} >Souzu</OptionButton>
+                <OptionButton id={showHonors ? "active" : "inactive"} onClick={e => clickTileOption("Hon")} >Honor</OptionButton>
             </OptionRack>
 
-            {showHonors ? <HonorTiles /> : <Tiles handleOnClick={addTile} tile={tiles} />}
+            {showHonors ? <HonorTiles handleOnClick={addTile} /> : <Tiles handleOnClick={addTile} tile={tiles} />}
 
         </StyledBoard>
     )
