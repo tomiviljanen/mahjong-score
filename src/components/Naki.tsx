@@ -1,14 +1,16 @@
-import { OptionButton } from './styled/OptionButton';
+import OptionButton from './styled/OptionButton';
 
 type NakiProps = {
     type: string,
     active: boolean,
-    click: (value: string) => void; 
+    click: (value: string) => void;
 }
 
-export const Naki = (props: NakiProps) =>  {
+const Naki = (props: NakiProps) => {
     return (
-    <>
-        <OptionButton id={props.active ? "active" : "inactive"} onClick={() => props.click(props.type)}>{props.type}</OptionButton>
-    </>)
+        <>
+            <OptionButton id={props.active ? "active" : "inactive"} onClick={() => props.click(props.type)}>{props.type}</OptionButton>
+        </>)
 }
+
+export default Naki;

@@ -2,11 +2,11 @@ import { useState } from "react";
 import styled from "styled-components";
 import { HAND_LENGTH, IMAGE_FOLDER } from "../util/Constants";
 import { isObjectEqual } from "../util/Util";
-import { Naki } from "./Naki";
-import { OptionButton } from "./styled/OptionButton";
-import { OptionRack } from "./styled/OptionRack";
+import Naki from "./Naki";
+import OptionButton from "./styled/OptionButton";
+import OptionRack from "./styled/OptionRack";
 import { HonorTiles, Tiles, TileType } from "./Tile";
-import { WindTile } from "./WindTile";
+import WindTile from "./WindTile";
 
 const StyledBoard = styled.div`
     background-color: #0e6023;
