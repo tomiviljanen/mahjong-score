@@ -1,4 +1,5 @@
 import { IMAGE_FOLDER } from "../util/Constants"
+import TileButton from "./TileButton"
 
 type WindTileProp = {
     wind: string,
@@ -6,7 +7,7 @@ type WindTileProp = {
 }
 
 const WindTile = ({wind, onClick}: WindTileProp) => {
-    return <input onClick={onClick} alt="wind-tile" className="wind-img" type="image" src={IMAGE_FOLDER + "/Hon/" + wind + ".svg"}></input>
+    return <TileButton onClick={onClick} alt="wind-tile" className="wind-img" type="image" src={IMAGE_FOLDER + "/Hon/" + wind + ".svg"}/>
 }
 
 export default WindTile;

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { HAND_LENGTH, IMAGE_FOLDER } from "../util/Constants";
 import { isObjectEqual } from "../util/Util";
@@ -6,6 +6,7 @@ import Naki from "./Naki";
 import OptionButton from "./styled/OptionButton";
 import OptionRack from "./styled/OptionRack";
 import { HonorTiles, Tiles, TileType } from "./Tile";
+import TileButton from "./TileButton";
 import WindTile from "./WindTile";
 
 const StyledBoard = styled.div`
@@ -17,6 +18,22 @@ const StyledBoard = styled.div`
 `
 
 export const Board = () => {
+    const KOKUSHI = [
+        {tile: "Man", num: "1"},
+        {tile: "Man", num: "9"},
+        {tile: "Sou", num: "1"},
+        {tile: "Sou", num: "9"},
+        {tile: "Pin", num: "1"},
+        {tile: "Pin", num: "9"},
+        {tile: "Hon", num: "Ton"},
+        {tile: "Hon", num: "Nan"},
+        {tile: "Hon", num: "Shaa"},
+        {tile: "Hon", num: "Pei"},
+        {tile: "Hon", num: "Chun"},
+        {tile: "Hon", num: "Haku"},
+        {tile: "Hon", num: "Hatsu"},
+    ]
+
     const WINDS = ["Ton", "Nan", "Shaa", "Pei"];
     const [seat, setSeat] = useState(0);
     const [round, setRound] = useState(0);
@@ -28,6 +45,13 @@ export const Board = () => {
     const clickSeatWind = () => seat === 3 ? setSeat(0) : setSeat(seat + 1);
     const clickRoundWind = () => round === 3 ? setRound(0) : setRound(round + 1);
     const clickNaki = (value: string) => value === naki ? setNaki("NONE") : setNaki(value);
+
+    useEffect(() => {
+        if(chosenTiles.length >= HAND_LENGTH){
+            const found = chosenTiles.some(r => KOKUSHI.includes(r));
+            console.log(found);
+        }
+      }, [chosenTiles]);
 
     const clickTileOption = (tile: string) => {
         if (tile !== "Hon") {
@@ -66,6 +90,12 @@ export const Board = () => {
         }
     }
 
+    const removeTile = (num: number) => {
+        const newTiles = [...chosenTiles];
+        newTiles.splice(num, 1);
+        setChosenTiles(newTiles);
+    }
+
     return (
         <StyledBoard>
             <div className="winds">
@@ -81,7 +111,7 @@ export const Board = () => {
 
             <div className="new-points">
                 {Array.from({ length: chosenTiles.length }).map((_, x) => (
-                    <img className="point-fg" alt="chosen-tile" src={IMAGE_FOLDER + "/" + chosenTiles[x].tile + "/" + chosenTiles[x].num + ".svg"} />
+                    <TileButton type="image" onClick={() => removeTile(x)} className="point-fg" alt="chosen-tile" src={IMAGE_FOLDER + "/" + chosenTiles[x].tile + "/" + chosenTiles[x].num + ".svg"} />
                 ))}
             </div>
 
