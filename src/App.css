@@ -2,45 +2,19 @@
   text-align: center;
 }
 
-.rack{
-  width: 100vw;
-  display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-  row-gap: 1em;
-  margin-top: 1em;
-}
-
-.tile-rack{
-  column-gap: 1em;
-}
-
-.honor-rack{
-  column-gap: 1.8em;
-}
-
 .point-rack{
   width: 100vw;
+  height: 20vh;
   display: flex;
   margin-top: 0.5em;
+  justify-content: center;
   flex-direction: row;
   flex-flow: space-between;
   align-items: left;
-  justify-content: center;
-}
-
-.point-tile{
-  width: 2.5em;
-  height: 3.0em;
-  border: 1px solid black;
 }
 
 .winds{
  width: 100vw;
  display: flex;
  justify-content: space-evenly;
-}
-
-#active{
-  background-color: orange !important;
 }

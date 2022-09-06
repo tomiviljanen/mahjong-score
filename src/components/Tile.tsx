@@ -1,4 +1,5 @@
 import { IMAGE_FOLDER } from "../util/Constants";
+import Rack from "./styled/Rack";
 import TileButton from "./TileButton";
 
 type TileProps = {
@@ -16,14 +17,14 @@ export const Tiles = ({ tile, handleOnClick }: TileProps) => {
     handleOnClick({ tile, num });
   };
 
-  return <div className='rack tile-rack'>
+  return <Rack gap="1em">
     {
       Array.from({ length: 9 }).map((_, count) => (
         <TileButton onClick={e => handleClick(tile, (count + 1).toString())} alt="tile" className="tile-fg" type="image" src={IMAGE_FOLDER + tile + "/" +  (count + 1) + ".svg"} />
       ))
     }
     <TileButton alt="tile" className="tile-fg" type="image" src={IMAGE_FOLDER + "/" + tile + "/5-Dora.svg"} />
-  </div>
+  </Rack>
 
 
 }
@@ -38,7 +39,7 @@ export const HonorTiles = ({handleOnClick}: HonorProps) => {
     handleOnClick({ tile, num });
   };
 
-  return <div className="rack honor-rack">
+return <Rack gap="1.8em">
     <TileButton onClick={e => handleClick("Ton")} alt="tile" className="tile-fg" type="image" src="images/Hon/Ton.svg" />
     <TileButton onClick={e => handleClick("Nan")} alt="tile" className="tile-fg" type="image" src="images/Hon/Nan.svg" />
     <TileButton onClick={e => handleClick("Shaa")} alt="tile" className="tile-fg" type="image" src="images/Hon/Shaa.svg" />
@@ -46,5 +47,5 @@ export const HonorTiles = ({handleOnClick}: HonorProps) => {
     <TileButton onClick={e => handleClick("Chun")} alt="tile" className="tile-fg" type="image" src="images/Hon/Chun.svg" />
     <TileButton onClick={e => handleClick("Hatsu")} alt="tile" className="tile-fg" type="image" src="images/Hon/Hatsu.svg" />
     <TileButton onClick={e => handleClick("Haku")} alt="tile" className="tile-fg" type="image" src="images/Hon/Haku.svg" />
-  </div>
+  </Rack>
 }

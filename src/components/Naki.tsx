@@ -9,7 +9,7 @@ type NakiProps = {
 const Naki = (props: NakiProps) => {
     return (
         <>
-            <OptionButton id={props.active ? "active" : "inactive"} onClick={() => props.click(props.type)}>{props.type}</OptionButton>
+            <OptionButton active={props.active} onClick={() => props.click(props.type)}>{props.type}</OptionButton>
         </>)
 }
 

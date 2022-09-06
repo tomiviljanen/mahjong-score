@@ -17,22 +17,24 @@ const StyledBoard = styled.div`
     color: white;
 `
 
+const KOKUSHI = [
+    {tile: "Man", num: "1"},
+    {tile: "Man", num: "9"},
+    {tile: "Sou", num: "1"},
+    {tile: "Sou", num: "9"},
+    {tile: "Pin", num: "1"},
+    {tile: "Pin", num: "9"},
+    {tile: "Hon", num: "Ton"},
+    {tile: "Hon", num: "Nan"},
+    {tile: "Hon", num: "Shaa"},
+    {tile: "Hon", num: "Pei"},
+    {tile: "Hon", num: "Chun"},
+    {tile: "Hon", num: "Haku"},
+    {tile: "Hon", num: "Hatsu"},
+]
+
 export const Board = () => {
-    const KOKUSHI = [
-        {tile: "Man", num: "1"},
-        {tile: "Man", num: "9"},
-        {tile: "Sou", num: "1"},
-        {tile: "Sou", num: "9"},
-        {tile: "Pin", num: "1"},
-        {tile: "Pin", num: "9"},
-        {tile: "Hon", num: "Ton"},
-        {tile: "Hon", num: "Nan"},
-        {tile: "Hon", num: "Shaa"},
-        {tile: "Hon", num: "Pei"},
-        {tile: "Hon", num: "Chun"},
-        {tile: "Hon", num: "Haku"},
-        {tile: "Hon", num: "Hatsu"},
-    ]
+
 
     const WINDS = ["Ton", "Nan", "Shaa", "Pei"];
     const [seat, setSeat] = useState(0);
@@ -123,10 +125,10 @@ export const Board = () => {
             </OptionRack>
 
             <OptionRack>
-                <OptionButton id={!showHonors && tiles === "Man" ? "active" : "inactive"} onClick={e => clickTileOption("Man")} >Manzu</OptionButton>
-                <OptionButton id={!showHonors && tiles === "Pin" ? "active" : "inactive"} onClick={e => clickTileOption("Pin")} >Pinzu</OptionButton>
-                <OptionButton id={!showHonors && tiles === "Sou" ? "active" : "inactive"} onClick={e => clickTileOption("Sou")} >Souzu</OptionButton>
-                <OptionButton id={showHonors ? "active" : "inactive"} onClick={e => clickTileOption("Hon")} >Honor</OptionButton>
+                <OptionButton active={!showHonors && tiles === "Man"} onClick={e => clickTileOption("Man")} >Manzu</OptionButton>
+                <OptionButton active={!showHonors && tiles === "Pin"} onClick={e => clickTileOption("Pin")} >Pinzu</OptionButton>
+                <OptionButton active={!showHonors && tiles === "Sou"} onClick={e => clickTileOption("Sou")} >Souzu</OptionButton>
+                <OptionButton active={showHonors} onClick={e => clickTileOption("Hon")} >Honor</OptionButton>
             </OptionRack>
 
             {showHonors ? <HonorTiles handleOnClick={addTile} /> : <Tiles handleOnClick={addTile} tile={tiles} />}
