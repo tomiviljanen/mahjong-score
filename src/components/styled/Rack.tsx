@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const Rack = styled.div<{gap: string}>`
-width: 100vw;
+width: 100%;
 display: flex;
 justify-content: space-evenly;
 flex-wrap: wrap;

@@ -7,9 +7,9 @@ type TileProps = {
   handleOnClick: (value: TileType) => void
 }
 
-export type TileType = {
-  tile: string,
-  num: string
+export interface TileType {
+  tile: string;
+  num: string;
 }
 
 export const Tiles = ({ tile, handleOnClick }: TileProps) => {

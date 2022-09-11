@@ -1,20 +1,4 @@
 .App {
   text-align: center;
-}
-
-.point-rack{
-  width: 100vw;
-  height: 20vh;
-  display: flex;
-  margin-top: 0.5em;
-  justify-content: center;
-  flex-direction: row;
-  flex-flow: space-between;
-  align-items: left;
-}
-
-.winds{
- width: 100vw;
- display: flex;
- justify-content: space-evenly;
+  background-color: #0e6023;
 }
