@@ -14,6 +14,7 @@ const customStyles = {
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
         backgroundColor: '#0b4d1c',
+        maxHeight: '100vh'
     },
 };
 
@@ -23,9 +24,6 @@ const CloseButton = styled.button`
  padding: 10px;
  color: white;
  font-weight: bold;
- position: relative;
- top: 0px;
- right: 0px;
 `;
 
 interface DoraChooserProps {

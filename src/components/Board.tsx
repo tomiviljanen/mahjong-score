@@ -6,10 +6,8 @@ import { DoraChooser } from "./DoraChooser";
 import Naki from "./Naki";
 import { ScoreDisplay } from "./ScoreDisplay/ScoreDisplay";
 import OptionButton from "./styled/OptionButton";
-import OptionRack from "./styled/OptionRack";
 import PointRack from "./styled/PointRack";
 import Rack from "./styled/Rack";
-import WindRack from "./styled/WindRack";
 import { HonorTiles, Tiles, TileType } from "./Tile";
 import TileButton from "./TileButton";
 import TilesetSelector from "./TilesetSelector";
@@ -108,7 +106,7 @@ export const Board = () => {
 
     return (
         <StyledBoard>
-            <WindRack className="winds">
+            <Rack>
                 <div>
                     Seat wind<br />
                     <TileButton onClick={clickSeatWind} type="Hon" num={WINDS[seat]} />
@@ -117,7 +115,7 @@ export const Board = () => {
                     Round wind<br />
                     <TileButton onClick={clickRoundWind} type="Hon" num={WINDS[round]} />
                 </div>
-            </WindRack>
+            </Rack>
             <Rack>
                 <DoraChooser />
                 <DoraChooser />
@@ -127,20 +125,20 @@ export const Board = () => {
 
             <PointRack>
                 {Array.from({ length: chosenTiles.length }).map((_, x) => (
-                    <TileButton onClick={() => removeTile(x)} alt="chosen-tile" type={chosenTiles[x].tile} num={chosenTiles[x].num} />
+                    <TileButton key={"chosen-tile-" + x} onClick={() => removeTile(x)} alt="chosen-tile" type={chosenTiles[x].tile} num={chosenTiles[x].num} />
                 ))}
             </PointRack>
 
-            <OptionRack>
+            <Rack>
                 <Naki type="Chii" active={naki === "Chii"} click={clickNaki} />
                 <Naki type="Pon" active={naki === "Pon"} click={clickNaki} />
                 <Naki type="Kan" active={naki === "Kan"} click={clickNaki} />
-            </OptionRack>
+            </Rack>
 
-            <OptionRack>
+            <Rack>
                 <TilesetSelector defaultValue={tiles} update={e => clickTileOption(e)} />
                 <OptionButton onClick={() => setChosenTiles([])}>Clear</OptionButton>
-            </OptionRack>
+            </Rack>
 
 
             {showHonors ? <HonorTiles handleOnClick={addTile} /> : <Tiles handleOnClick={addTile} tile={tiles} />}

@@ -5,9 +5,10 @@ const PointRack = styled.div`
     display: flex;
     justify-content: center;
     min-height: 2rem;
-    gap: 12px;
-    margin-top: 0.5em;
+    gap: 0.5em;
+    margin-top: 1em;
     flex-flow: center;
+    flex-wrap: wrap;
     align-items: left;
     
     & :nth-child(3n+1) {

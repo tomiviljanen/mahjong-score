@@ -1,8 +1,8 @@
 import OptionButton from './styled/OptionButton';
 
-type NakiProps = {
-    type: string,
-    active: boolean,
+interface NakiProps {
+    type: string;
+    active: boolean;
     click: (value: string) => void;
 }
 
