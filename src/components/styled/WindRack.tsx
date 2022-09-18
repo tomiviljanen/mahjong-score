@@ -6,5 +6,4 @@ const WindRack = styled.div`
     justify-content: space-evenly;
 `
 
-
 export default WindRack;

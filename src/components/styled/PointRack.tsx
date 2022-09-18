@@ -15,5 +15,4 @@ const PointRack = styled.div`
     };
 `
 
-
 export default PointRack;

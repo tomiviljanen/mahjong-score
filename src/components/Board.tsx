@@ -13,7 +13,6 @@ import WindRack from "./styled/WindRack";
 import { HonorTiles, Tiles, TileType } from "./Tile";
 import TileButton from "./TileButton";
 import TilesetSelector from "./TilesetSelector";
-import WindTile from "./WindTile";
 
 const StyledBoard = styled.div`
     background-color: #0e6023;
@@ -39,9 +38,9 @@ export const Board = () => {
     const clickNaki = (value: string) => value === naki ? setNaki("NONE") : setNaki(value);
 
     useEffect(() => {
-        console.log(chosenTiles);
+        //console.log(chosenTiles);
         if (chosenTiles.length >= HAND_LENGTH) {
-            console.log(arrayContainsArray(KOKUSHI, chosenTiles));
+            //console.log(arrayContainsArray(KOKUSHI, chosenTiles));
         }
     }, [chosenTiles]);
 
@@ -112,11 +111,11 @@ export const Board = () => {
             <WindRack className="winds">
                 <div>
                     Seat wind<br />
-                    <WindTile onClick={clickSeatWind} wind={WINDS[seat]} />
+                    <TileButton onClick={clickSeatWind} type="Hon" num={WINDS[seat]} />
                 </div>
                 <div>
                     Round wind<br />
-                    <WindTile onClick={clickRoundWind} wind={WINDS[round]} />
+                    <TileButton onClick={clickRoundWind} type="Hon" num={WINDS[round]} />
                 </div>
             </WindRack>
             <Rack>
@@ -139,7 +138,7 @@ export const Board = () => {
             </OptionRack>
 
             <OptionRack>
-                <TilesetSelector update={e => clickTileOption(e)} />
+                <TilesetSelector defaultValue={tiles} update={e => clickTileOption(e)} />
                 <OptionButton onClick={() => setChosenTiles([])}>Clear</OptionButton>
             </OptionRack>
 

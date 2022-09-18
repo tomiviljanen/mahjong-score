@@ -16,7 +16,7 @@ export const Tiles = ({ tile, handleOnClick, hideDora }: TileProps) => {
   return <Rack gap="1em">
     {
       Array.from({ length: 9 }).map((_, count) => (
-        <TileButton onClick={handleOnClick} type={tile} num={String(count + 1)} />
+        <TileButton key={tile + "-" + count} onClick={handleOnClick} type={tile} num={String(count + 1)} />
       ))
     }
     {!hideDora && <TileButton onClick={handleOnClick} type={tile} num="5-Dora" />}

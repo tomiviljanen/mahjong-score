@@ -7,11 +7,11 @@ type NakiProps = {
 }
 
 const Naki = (props: NakiProps) => {
-    return <OptionButton 
-                active={props.active} 
-                onClick={() => props.click(props.type)}>
-            {props.type}
-            </OptionButton>
+    return <OptionButton
+        active={props.active}
+        onClick={() => props.click(props.type)}>
+        {props.type}
+    </OptionButton>
 }
 
 export default Naki;
