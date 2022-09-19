@@ -1,4 +1,3 @@
-import Rack from "./styled/Rack";
 import TileButton from "./TileButton";
 
 interface TileProps {
@@ -13,14 +12,15 @@ export interface TileType {
 }
 
 export const Tiles = ({ tile, handleOnClick, hideDora }: TileProps) => {
-  return <Rack gap="1em">
-    {
-      Array.from({ length: 9 }).map((_, count) => (
-        <TileButton key={tile + "-" + count} onClick={handleOnClick} type={tile} num={String(count + 1)} />
-      ))
-    }
-    {!hideDora && <TileButton onClick={handleOnClick} type={tile} num="5-Dora" />}
-  </Rack>
+  return (
+    <>
+      {
+        Array.from({ length: 9 }).map((_, count) => (
+          <TileButton key={tile + "-" + count} onClick={handleOnClick} type={tile} num={String(count + 1)} />
+        ))
+      }
+      {!hideDora && <TileButton onClick={handleOnClick} type={tile} num="5-Dora" />}
+    </>)
 
 
 }
@@ -30,13 +30,15 @@ type HonorProps = {
 }
 
 export const HonorTiles = ({ handleOnClick }: HonorProps) => {
-  return <Rack gap="1.8em">
-    <TileButton onClick={handleOnClick} type="Hon" num={"Ton"} />
-    <TileButton onClick={handleOnClick} type="Hon" num={"Nan"} />
-    <TileButton onClick={handleOnClick} type="Hon" num={"Shaa"} />
-    <TileButton onClick={handleOnClick} type="Hon" num={"Pei"} />
-    <TileButton onClick={handleOnClick} type="Hon" num={"Chun"} />
-    <TileButton onClick={handleOnClick} type="Hon" num={"Hatsu"} />
-    <TileButton onClick={handleOnClick} type="Hon" num={"Haku"} />
-  </Rack>
+  return (
+    <>
+      <TileButton onClick={handleOnClick} type="Hon" num={"Ton"} />
+      <TileButton onClick={handleOnClick} type="Hon" num={"Nan"} />
+      <TileButton onClick={handleOnClick} type="Hon" num={"Shaa"} />
+      <TileButton onClick={handleOnClick} type="Hon" num={"Pei"} />
+      <TileButton onClick={handleOnClick} type="Hon" num={"Chun"} />
+      <TileButton onClick={handleOnClick} type="Hon" num={"Hatsu"} />
+      <TileButton onClick={handleOnClick} type="Hon" num={"Haku"} />
+    </>
+  )
 }

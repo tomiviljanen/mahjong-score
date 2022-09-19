@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { HAND_LENGTH, KOKUSHI } from "../util/Constants";
-import { arrayContainsArray, isObjectEqual } from "../util/Util";
+import { HAND_LENGTH } from "../util/Constants";
+import { isObjectEqual } from "../util/Util";
 import { DoraChooser } from "./DoraChooser";
 import Naki from "./Naki";
 import { ScoreDisplay } from "./ScoreDisplay/ScoreDisplay";
 import OptionButton from "./styled/OptionButton";
-import PointRack from "./styled/PointRack";
 import Rack from "./styled/Rack";
 import { HonorTiles, Tiles, TileType } from "./Tile";
 import TileButton from "./TileButton";
@@ -20,6 +19,8 @@ const StyledBoard = styled.div`
     min-height: -webkit-fill-available;
     font-size: calc(10px + 2vmin);
     color: white;
+    display: flex;
+    flex-direction: column;
 `
 
 export const Board = () => {
@@ -116,20 +117,20 @@ export const Board = () => {
                     <TileButton onClick={clickRoundWind} type="Hon" num={WINDS[round]} />
                 </div>
             </Rack>
-            <Rack>
+            <Rack justifyContent="center">
                 <DoraChooser />
                 <DoraChooser />
                 <DoraChooser />
                 <DoraChooser />
             </Rack>
 
-            <PointRack>
+            <Rack gap="0.5em" justifyContent="center">
                 {Array.from({ length: chosenTiles.length }).map((_, x) => (
                     <TileButton key={"chosen-tile-" + x} onClick={() => removeTile(x)} alt="chosen-tile" type={chosenTiles[x].tile} num={chosenTiles[x].num} />
                 ))}
-            </PointRack>
+            </Rack>
 
-            <Rack>
+            <Rack toBottom>
                 <Naki type="Chii" active={naki === "Chii"} click={clickNaki} />
                 <Naki type="Pon" active={naki === "Pon"} click={clickNaki} />
                 <Naki type="Kan" active={naki === "Kan"} click={clickNaki} />
@@ -140,9 +141,9 @@ export const Board = () => {
                 <OptionButton onClick={() => setChosenTiles([])}>Clear</OptionButton>
             </Rack>
 
-
-            {showHonors ? <HonorTiles handleOnClick={addTile} /> : <Tiles handleOnClick={addTile} tile={tiles} />}
-
+            <Rack gap="1em">
+                {showHonors ? <HonorTiles handleOnClick={addTile} /> : <Tiles handleOnClick={addTile} tile={tiles} />}
+            </Rack>
             <ScoreDisplay score={25000} />
 
         </StyledBoard>
